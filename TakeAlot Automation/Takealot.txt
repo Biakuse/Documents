@@ -1,0 +1,55 @@
+package Coding_Standards_Objects_Package;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class Takealot extends Page_Factory{
+	
+	//Find elements using xpath
+	private final String newArrivalsButtonXpath = "/html/body/div[3]/div/div[3]/table/tbody/tr/td[1]/a"; ///html/body/div[3]/div/div[3]/table/tbody/tr/td[1]/a
+	@FindBy(xpath = newArrivalsButtonXpath)
+	WebElement newArrivalsButton;
+	
+	private final String techTrendsButtonXpath = "//*[@id=\"page-template\"]/div/div[2]/div[1]/div[1]/ul/li[1]/a";
+	@FindBy(xpath = techTrendsButtonXpath)
+	WebElement techTrendsButton;
+	
+	private final String searchTextfieldXpath = "//*[@id=\"search\"]";
+	@FindBy(xpath = searchTextfieldXpath)
+	WebElement searchTextfield;
+	
+	private final String searchButtonXpath = "//*[@id=\"search_mini_form\"]/fieldset/input[11]";
+	@FindBy(xpath = searchButtonXpath)
+	WebElement searchButton;	
+	
+	//Instantiate WebDriver
+	public Takealot(WebDriver driver) {
+		super(driver);
+		// TODO Auto-generated constructor stub
+	}	
+	
+	public void clickNewArrivalsButton()
+	{
+		this.newArrivalsButton.click();
+		
+	}
+	
+	public void clickTechTrendsButton()
+	{
+		this.techTrendsButton.click();
+	}
+	
+	public void enterSearchTextfield(String searchTextfield)
+	{
+		this.searchTextfield.clear();
+		this.searchTextfield.sendKeys(searchTextfield);
+		
+	}
+	
+	public void clickSearchButton()
+	{
+		this.searchButton.click();
+	
+	}
+}
