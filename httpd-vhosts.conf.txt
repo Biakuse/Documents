@@ -1,0 +1,242 @@
+# Virtual Hosts
+#
+<VirtualHost *:80>
+  ServerName localhost
+  ServerAlias localhost
+  DocumentRoot "${INSTALL_DIR}/www"
+  <Directory "${INSTALL_DIR}/www/">
+    Options +Indexes +Includes +FollowSymLinks +MultiViews
+    AllowOverride All
+    Require local
+  </Directory>
+</VirtualHost>
+
+
+<VirtualHost *:80>
+	ServerName staffshopcatalogue 
+    ServerAdmin username@awards.co.za
+
+    # Over here please note that we use a separate folder for the webroot
+    DocumentRoot "C:/Users/asavelac.AWARDS.CO.ZA/Documents/www/staffshopcatalogue"
+    
+    php_admin_value auto_prepend_file C:/Users/asavelac.AWARDS.CO.ZA/Documents/www/staffshopcatalogue/legacy.php
+
+    ServerName staffshopcatalogue.local
+    ServerAlias www.staffshopcatalogue.local
+    ErrorLog "logs/staffshopcatalogue.local-error.log"
+    CustomLog "logs/staffshopcatalogue.local-access.log" common
+                
+                DirectoryIndex index.php index.phtml index.html                             
+    
+    Alias /staffshopcatalogue "C:/Users/asavelac.AWARDS.CO.ZA/Documents/www/staffshopcatalogue"
+                
+                # Set Appropriate access to these folders
+    <Directory "C:/Users/asavelac.AWARDS.CO.ZA/Documents/www">
+        Require all granted
+        AllowOverride All
+    </Directory>
+                
+                SetEnv APPLICATION_ENV development
+    SetEnv DB_WPDB wpdb_0541_redesign
+    SetEnv DB_HOST testdata
+    
+    SetEnv APP_PATH     "C:/Users/asavelac.AWARDS.CO.ZA/Documents/www/staffshop"
+    SetEnv CONFIG_PATH  "C:/Users/asavelac.AWARDS.CO.ZA/Documents/www/aag-main/Library/config"
+    
+</VirtualHost>
+
+
+<VirtualHost *:80>
+	ServerName awardsmallmonitor
+	DocumentRoot "c:/wamp/www/awardsmallmonitor"
+	<Directory  "c:/wamp/www/awardsmallmonitor/">
+		Options +Indexes +Includes +FollowSymLinks +MultiViews
+		AllowOverride All
+		Require local
+	</Directory>
+
+	SetEnv MALLSERVICE "http://AwardsMallService.awards.co.za:6080/Service.svc?wsdl"
+</VirtualHost>
+
+<VirtualHost *:80>
+   
+    ServerAdmin asavelac@awards.co.za
+
+    # Over here please note that we use a separate folder for the webroot
+    DocumentRoot "C:/wamp/www/vouchersprintmanager"
+
+    ServerName VoucherSprintManager.local
+    ServerAlias www.VoucherSprintManager.local
+    ErrorLog "logs\VoucherSprintManager.local-error.log"
+    CustomLog "logs\VoucherSprintManager.local-access.log" common
+  
+  DirectoryIndex index.php index.phtml index.html
+  
+  # Alias to actual repo folders
+	
+    Alias /VoucherSprintManager "C:/wamp/www/VoucherSprintManager"
+    Alias /auth "C:/wamp/www/aag-main/Applications/auth"
+    Alias /config "C:/wamp/www/aag-main/Applications/config"
+    Alias /extjs "C:/wamp/www/extjs"
+    Alias /library "C:/wamp/www/aag-main/Library"
+    Alias /services "C:/wamp/www/aag-main/Services"
+  
+  # Set Appropriate access to these folders
+    <Directory "C:/wamp/www">
+        allow from all
+        order allow,deny
+        AllowOverride All
+		Require all granted
+    </Directory>
+  
+   SetEnv ADMINSERVICE "http://voucherservice.awards.co.za:7080/"
+   SetEnv ADMINSERVICE "http://voucherservicetest.awards.co.za/"
+   SetEnv MALLSERVICE "http://awardsmallservice.awards.co.za:7080/Service.svc?wsdl"
+  
+  # The following settings are optional and were added for local pc development OR staging environments
+  SetEnv CONFIG_PATH C:wamp/www/aag-main/Library/config
+  
+</VirtualHost>
+
+
+<VirtualHost *:80>
+   ServerAdmin asavelac@awards.co.za
+
+    # Over here please note that we use a separate folder for the webroot
+    DocumentRoot "C:/wamp/www/homechoice_vibe"
+                
+    ServerName vibe.local
+            ServerAlias www.vibe.local
+    ErrorLog "logs\vibe.local-error.log"
+    CustomLog "logs\vibe.local-access.log" common
+                
+    DirectoryIndex index.php index.phtml index.html
+                                
+                                
+    # Set Appropriate access to these folders
+    <Directory "C:/wamp/www/homechoice_vibe">
+        allow from all
+        order allow,deny
+        AllowOverride All
+                        Require all granted
+    </Directory>
+    
+    
+                        SetEnv APPLICATION_ENV development
+                        SetEnv DB_HOST testdata 
+                        SetEnv CAMPAIGN_CODE 0608
+			#SetEnv API_URL  http://participantservicetest.awards.co.za/Services/ParticipantService/extdirect.php
+                        SetEnv API_URL "http://appdev02.awards.co.za/services/ParticipantService/extdirect.php"
+			SetEnv NOMINATION_API_URL "http://nominationservicetest.awards.co.za"
+                	SetEnv SURVEY_API_URL "http://surveyservicetest.awards.co.za"
+			SetEnv SERVICE_BASEURL http://u000test.awards.co.za
+
+
+                                
+</VirtualHost>
+
+
+<VirtualHost *:80>
+    ServerAdmin username@awards.co.za
+
+    # Over here please note that we use a separate folder for the webroot
+    DocumentRoot "C:\wamp\www\callmanagementinterface\Applications\cmi"
+
+    ServerName cmi.local
+    ServerAlias www.cmi.local
+    ErrorLog "logs/cmi.local-error.log"
+    #ustomLog "logs/cmi.local-access.log" common
+ 
+ DirectoryIndex index.php index.phtml index.html
+ 
+ # Alias to actual repo folders
+   Alias /cmi "C:\wamp\www\callmanagementinterface\Applications\cmi"
+   Alias /auth "C:\wamp\www\callmanagementinterface\Applications\auth"
+   Alias /config "C:\wamp\www\callmanagementinterface\Applications\config"
+   Alias /extjs "C:\wamp\www\callmanagementinterface\applications\extjs"
+   Alias /library "C:\wamp\www\callmanagementinterface\Library"
+   Alias /services "C:\wamp\www\callmanagementinterface\Services"
+ 
+ # Set Appropriate access to these folders
+    <Directory "C:\wamp\www\callmanagementinterface">
+        Require all granted
+        AllowOverride All
+    </Directory>
+ 
+ SetEnv APPLICATION_ENV development
+ SetEnv DB_WPDB wpdb_0541_redesign
+ SetEnv DB_HOST testdata
+ SetEnv APP_PATH "C:\wamp\www\callmanagementinterface"
+ 
+ # The following settings are optional and were added for local pc development OR staging environments
+ SetEnv CONFIG_PATH  "C:\wamp\www\callmanagementinterface\Library\config"
+ 
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerAdmin asavelac@awards.co.za
+
+   DocumentRoot "C:\wamp\www\bansela"
+
+    ServerName bansela.local
+    ServerAlias bansela.local
+    ErrorLog "logs/bansela.local-error.log"
+    #ustomLog "logs/bansela.local-access.log" common
+ 
+ 
+ SetEnv DB_WPDB "wpdb_0618_development"
+SetEnv DB_USER "engine"
+SetEnv DB_PASS "awards"
+SetEnv DB_HOST "172.21.0.30"
+
+SetEnv SERVICE_URL http://ewstest.awards.co.za/
+SetEnv CALC_SERVICE_URL http://banselacalcservice.awards.co.za:7080/Service.svc?wsdl
+SetEnv REPORTSERVICEURI http://reportservice.awards.co.za:7080/Service.svc?wsdl
+ 
+</VirtualHost>
+
+<VirtualHost *:80>
+   
+    ServerAdmin asavelac@awards.co.za
+
+    # Over here please note that we use a separate folder for the webroot
+    DocumentRoot "C:\wamp\www\aag-main"
+
+    ServerName cmi.local
+    ServerAlias www.cmi.local
+    ErrorLog "logs\cmi.local-error.log"
+    CustomLog "logs\cmi.local-access.log" common
+  
+  DirectoryIndex index.php index.phtml index.html
+  
+  # Alias to actual repo folders
+	
+    Alias /backorder "C:\wamp\www\aag-main\Applications\backorder"
+    Alias /roles "C:\wamp\www\aag-main\Applications\roles"
+    Alias /auth "C:\wamp\www\aag-main\Applications\auth"
+    Alias /config "C:\wamp\www\aag-main\Applications\config"
+    Alias /extjs "C:\wamp\www\extjs"
+    Alias /library "C:\wamp\www\aag-main\Library"
+    Alias /services "C:\wamp\www\aag-main\Services"
+    Alias /registration "C:\wamp\www\aag-main\Applications\registration"
+  
+  # Set Appropriate access to these folders
+    <Directory "C:\wamp\www\aag-main">
+        allow from all
+        order allow,deny
+        AllowOverride All
+		Require all granted
+    </Directory>
+  
+   SetEnv API_URL "http://appdev02.awards.co.za/services/ParticipantService/extdirect.php"
+   SetEnv SERVICE_URL http://ewstest.awards.co.za/
+   SetEnv APPLICATION_ENV development
+   SetEnv DB_WPDB wpdb_0541_redesign
+   SetEnv DB_HOST testdata
+   SetEnv APP_PATH "C:\wamp\www\aag-main"
+   SetEnv CONFIG_PATH C:\wamp\aag-main\Library\config
+  
+  # The following settings are optional and were added for local pc development OR staging environments
+  SetEnv CONFIG_PATH C:wamp\www\aag-main\Library\config
+  
+</VirtualHost>
